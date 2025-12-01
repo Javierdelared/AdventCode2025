@@ -26,7 +26,7 @@ abstract class BaseDayTest {
         logger.info("Running Test for AoC - Day ${daySolver.day} - Part 1")
         val result = daySolver.solvePart1()
         logger.info("Result: $result")
-        assertEquals(result, expectedPart1)
+        assertEquals(expectedPart1, result)
     }
 
     @Test
@@ -34,6 +34,6 @@ abstract class BaseDayTest {
         logger.info("Running Test for AoC - Day ${daySolver.day} - Part 2")
         val result = daySolver.solvePart2()
         logger.info("Result: $result")
-        assertEquals(result, expectedPart2)
+        assertEquals(expectedPart2, result)
     }
 }
