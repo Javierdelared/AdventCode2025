@@ -37,11 +37,7 @@ class Day2: BaseDay(2) {
             sum = if (isRepeatedTwice(range.min)) range.min else 0L,
         )
 
-    private fun sumIdsRepeatedTwice(
-        id: Long,
-        max: Long,
-        sum: Long,
-    ): Long =
+    private fun sumIdsRepeatedTwice(id: Long, max: Long, sum: Long): Long =
         nextInvalidId(id)
             .let {
                 if (it <= max) sumIdsRepeatedTwice(it, max, sum + it) else sum
@@ -92,10 +88,9 @@ class Day2: BaseDay(2) {
         divisorList: MutableSet<Int>,
     ): Set<Int> {
         if (minDivisor >= maxDivisor) return divisorList
-        var newMaxDivisor = maxDivisor
+        val newMaxDivisor = size / minDivisor
         if (size % minDivisor == 0) {
             divisorList.add(minDivisor)
-            newMaxDivisor = size / minDivisor
             divisorList.add(newMaxDivisor)
         }
         return calculateDivisors(minDivisor + 1, newMaxDivisor, size, divisorList)
