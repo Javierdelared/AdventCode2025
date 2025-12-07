@@ -1,6 +1,6 @@
 package puzzle
 
-import utils.memoize
+import utils.memorize
 
 class Day2: BaseDay(2) {
     override fun solvePart1() =
@@ -77,7 +77,7 @@ class Day2: BaseDay(2) {
         }
     }
 
-    val calculateDivisors: (Int) -> Set<Int> = memoize {
+    val calculateDivisors: (Int) -> Set<Int> = memorize {
         n -> if (n == 1) setOf() else calculateDivisors(2, n, n, mutableSetOf(n))
     }
 
