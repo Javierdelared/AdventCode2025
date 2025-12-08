@@ -1,6 +1,7 @@
 package puzzle
 
 import utils.Map2D
+import utils.Point2D
 
 class Day4: BaseDay(4) {
     override fun solvePart1() =
@@ -23,7 +24,7 @@ class Day4: BaseDay(4) {
         return countAllAccessibleRolls(map2D, total + accessibleRolls.count())
     }
 
-    private fun removeAccessibleRolls(map2D: Map2D, accessibleRolls: List<Map2D.Point2D>) =
+    private fun removeAccessibleRolls(map2D: Map2D, accessibleRolls: List<Point2D>) =
         accessibleRolls.forEach { map2D.map[it] = EMPTY_SPACE_CHAR }
 
     companion object {
