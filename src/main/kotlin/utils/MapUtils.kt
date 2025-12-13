@@ -1,5 +1,6 @@
 package utils
 
+import kotlin.math.abs
 import kotlin.math.pow
 
 data class Map2D(val input: List<String>) {
@@ -32,6 +33,33 @@ data class Map2D(val input: List<String>) {
 }
 
 data class Point2D(val x: Int, val y: Int)
+
+data class Point2DPair(val point1: Point2D, val point2: Point2D) {
+    val squareArea
+        get() = (abs(point1.x - point2.x) + 1).toLong() * (abs(point1.y - point2.y) + 1).toLong()
+
+    val linePoints: List<Point2D>
+        get() {
+            val linePoints = mutableListOf(point1)
+            val xMove = 1.takeIf { point1.x < point2.x } ?: (-1).takeIf { point1.x > point2.x } ?: 0
+            val yMove = 1.takeIf { point1.y < point2.y } ?: (-1).takeIf { point1.y > point2.y } ?: 0
+            var point = point1
+            while (point != point2) {
+                point = Point2D(point.x + xMove, point.y + yMove)
+                linePoints.add(point)
+            }
+            return linePoints
+        }
+
+    val squarePerimeter: List<Point2DPair>
+        get() =
+            listOf(
+                Point2DPair(point1, Point2D(point1.x, point2.y)),
+                Point2DPair(Point2D(point1.x, point2.y), point2),
+                Point2DPair(point2, Point2D(point2.x, point1.y)),
+                Point2DPair(Point2D(point2.x, point1.y), point1),
+            )
+}
 
 data class Point3D(val x: Double, val y: Double, val z: Double)
 
